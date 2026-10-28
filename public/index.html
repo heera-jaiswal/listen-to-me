@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ListenToMe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>ListenToMe</h1>
+    <span id="engine" class="muted small"></span>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" aria-labelledby="history-heading">
+      <div class="sidebar-head">
+        <h2 id="history-heading">Sessions</h2>
+        <button id="new-btn" class="btn ghost small" type="button">New</button>
+      </div>
+      <ul id="session-list" class="session-list"></ul>
+      <p id="session-empty" class="muted small" hidden>No sessions yet.</p>
+    </aside>
+
+    <main class="main">
+      <section class="card" aria-labelledby="rec-heading">
+        <h2 id="rec-heading" class="sr-only">Recorder</h2>
+        <div class="fields">
+          <label class="field">
+            <span>Title</span>
+            <input id="title" type="text" placeholder="Untitled session" maxlength="120" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Microphone</span>
+            <select id="mic"><option value="">System default</option></select>
+          </label>
+        </div>
+        <div class="controls">
+          <button id="start-btn" class="btn primary" type="button">Start</button>
+          <button id="pause-btn" class="btn" type="button" disabled>Pause</button>
+          <button id="stop-btn" class="btn danger" type="button" disabled>Stop</button>
+          <span id="rec-dot" class="rec-dot" aria-hidden="true"></span>
+          <output id="timer" class="timer" aria-label="Recorded time">00:00:00</output>
+          <div class="meter" role="meter" aria-label="Microphone level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="meter">
+            <div id="meter-bar" class="meter-bar"></div>
+          </div>
+        </div>
+        <p id="status" class="status" role="status" aria-live="polite">Ready.</p>
+      </section>
+
+      <section class="card transcript-card" aria-labelledby="t-heading">
+        <div class="transcript-head">
+          <div>
+            <h2 id="t-heading">Transcript</h2>
+            <p id="t-meta" class="muted small"></p>
+          </div>
+          <div id="actions" class="actions" hidden>
+            <a id="dl-txt" class="btn ghost small">TXT</a>
+            <a id="dl-srt" class="btn ghost small">SRT</a>
+            <a id="dl-md" class="btn ghost small">Markdown</a>
+            <a id="dl-audio" class="btn ghost small">Audio</a>
+            <button id="copy-btn" class="btn ghost small" type="button">Copy</button>
+            <button id="finalize-btn" class="btn small" type="button" hidden>Finalize</button>
+            <button id="refine-btn" class="btn small" type="button" hidden>Improve accuracy</button>
+            <button id="delete-btn" class="btn ghost small danger-text" type="button">Delete</button>
+          </div>
+        </div>
+        <div id="progress" class="progress" hidden><div id="progress-bar" class="progress-bar"></div></div>
+        <div id="transcript" class="transcript" role="log" aria-live="off" tabindex="0">
+          <p class="empty muted">Press <strong>Start</strong> and talk. Text appears every 20–30 seconds and is finalized when you press Stop.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
